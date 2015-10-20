@@ -5,3 +5,4 @@ git pull
 git fetch upstream
 git diff upstream/master
 git merge upstream/master
+git push
