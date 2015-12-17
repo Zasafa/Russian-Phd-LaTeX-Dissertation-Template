@@ -15,7 +15,6 @@
 \usepackage{pdflscape}                              % Для включения альбомных страниц
 \usepackage{geometry}                               % Для последующего задания полей
 
-\usepackage{cleveref}
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
 \usepackage{mathtools}                              % Добавляет окружение multlined
@@ -87,3 +86,6 @@
 \usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц
 \usepackage{totcount}                               % Пакет создания счётчиков на основе последнего номера подсчитываемого элемента (может требовать дважды компилировать документ)
 \usepackage{totpages}                               % Счётчик страниц, совместимый с hyperref (ссылается на номер последней страницы). Желательно ставить последним пакетом в преамбуле
+\usepackage{cleveref}
+\creflabelformat{equation}{#2#1#3} 
+%\labelcrefformat{equation}{-#2#1#3-}
