@@ -2,8 +2,6 @@
 
 %\usepackage{csquotes} % biblatex рекомендует его подключать. Пакет для оформления сложных блоков цитирования.
 
-%\input{../common/names}             % Переопределение именований
-
 %%% Загрузка пакета с основными настройками %%%
 \usepackage[%
 backend=biber,% движок
@@ -121,6 +119,7 @@ sortcites=true,% сортировать номера затекстовых сс
 %    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
 %
 %\renewcommand*{\mkgostheading}[1]{\usebibmacro{string+doi}{#1}} % ссылка на doi с авторов. стоящих впереди записи
+%\renewcommand*{\mkgostheading}[1]{#1} % только лишь убираем курсив с авторов
 %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия работы
 %\DeclareFieldFormat{journaltitle}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия журнала
 
