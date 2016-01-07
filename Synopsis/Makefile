@@ -1,12 +1,12 @@
 all:
-		latexmk -pdf -pdflatex="xelatex %O %S" synopsis
-# latexmk -pdf -jobname=synopsis_pdflatex -ps- -dvi- -recorder -silent synopsis.tex
-# latexmk -pdf -jobname=synopsis_pdflatex -ps- -dvi- -recorder -silent -c synopsis.tex
-# latexmk -xelatex -jobname=synopsis_xelatex -ps- -dvi- -recorder -silent synopsis.tex 
-# latexmk -xelatex -jobname=synopsis_xelatex -ps- -dvi- -recorder -silent -c synopsis.tex 
-# latexmk -lualatex -jobname=synopsis_lualatex -ps- -dvi- -recorder -silent synopsis.tex 
-# latexmk -lualatex -jobname=synopsis_lualatex -ps- -dvi- -recorder -silent -c synopsis.tex 
+	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
 
+pdf:
+	latexmk -pdf -jobname=synopsis_pdf -silent  synopsis.tex
+xedraft:
+	latexmk -pdf -pdflatex="xelatex %O %S" draft
+draft:
+	latexmk -pdf -jobname=draft -silent  draft.tex
 
 clean:
 	latexmk -C synopsis
