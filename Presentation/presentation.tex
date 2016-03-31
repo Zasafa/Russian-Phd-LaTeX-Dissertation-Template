@@ -7,18 +7,30 @@
 
 \graphicspath{{../images/}{images/}} 
 
+
+
+% \usetheme[secheader]{Boadilla}
+% \usecolortheme{seahorse}
+
 \usetheme{Pittsburgh}
 \usecolortheme{whale}
+
+\beamertemplatenavigationsymbolsempty
+
+\newcommand{\todo}{\alert}
+\input{../common/data.tex}      % Основные сведения
 
 \setbeamercolor{footline}{fg=blue}
 \setbeamertemplate{footline}{
   \leavevmode%
   \hbox{%
   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
-    И. О. Фамилия, Организация
+    % И. О. Фамилия, Организация кратко
+    \thesisAuthorShort, \thesisOrganizationShort
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
-    Город, 20XX
+    % Город, 20XX
+    \thesisCity, \thesisYear
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{}%
   Стр. \insertframenumber{} из \inserttotalframenumber \hspace*{2ex}
@@ -28,16 +40,16 @@
 
 \newcommand{\itemi}{\item[\checkmark]}
 
-\title{\small{Название презентации}}
+%\title{\small{Название презентации}}
+\title{\small{\thesisTitle}}
 \author{\small{%
-\emph{Выступающий:}~И.О.Фамилия\\%
-\emph{Руководитель:}~проф.,~к.ф.-м.н.~И.О.Фамилия}\\%
+\emph{Выступающий:}~\thesisAuthorShort\\%
+\emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort}\\%
 \vspace{30pt}%
-Полное название\\
-организации%
+\thesisOrganization%
 \vspace{20pt}%
 }
-\date{\small{Город, 20XX}}
+\date{\small{\thesisCity, \thesisYear}}
 
 \begin{document}
 
@@ -98,7 +110,7 @@
 \frametitle{Одиночное изображение}
 \begin{figure}[H]
   \center
-  \includegraphics[width=0.8\linewidth]{latex}
+%  \includegraphics[width=0.8\linewidth]{latex}
 \end{figure}
 \end{frame}
 
@@ -120,12 +132,12 @@ $$
 \begin{figure}[h]
   \begin{minipage}[h]{0.49\linewidth}
     \textbf{Составная \\ подпись 1}
-    \center{\includegraphics[width=1\linewidth]{knuth1}}
+%    \center{\includegraphics[width=1\linewidth]{knuth1}}
   \end{minipage}
   \hfill
   \begin{minipage}[h]{0.49\linewidth}
     \textbf{Составная \\ подпись 2}
-    \center{\includegraphics[width=1\linewidth]{knuth2}}
+%    \center{\includegraphics[width=1\linewidth]{knuth2}}
   \end{minipage}
 \end{figure}
 \end{frame}
@@ -179,10 +191,10 @@ $$
 \frametitle{Четыре изображения}
 \begin{figure}[H]
   \center
-    \includegraphics[width=0.4\linewidth]{latex}
-    \includegraphics[width=0.4\linewidth]{latex}\\
-    \includegraphics[width=0.4\linewidth]{latex}
-    \includegraphics[width=0.4\linewidth]{latex}
+    % \includegraphics[width=0.4\linewidth]{latex}
+    % \includegraphics[width=0.4\linewidth]{latex}\\
+    % \includegraphics[width=0.4\linewidth]{latex}
+    % \includegraphics[width=0.4\linewidth]{latex}
 \end{figure}
 \end{frame}
 
