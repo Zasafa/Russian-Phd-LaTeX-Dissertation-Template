@@ -15,7 +15,8 @@ defernumbers=true,% нумерация проставляется после д�
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
 doi=false,% Показывать или нет ссылки на DOI
 isbn=false,% Показывать или нет ISBN
-]{biblatex}
+]{biblatex}[2014/06/25]
+
 
 
 
@@ -32,7 +33,7 @@ isbn=false,% Показывать или нет ISBN
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
             \step[fieldset=pagestotal, null]
         }
-        \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media. которым пользуется biblatex в значение eresource
+        \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media, которым пользуется biblatex, в значение eresource.
             \step[fieldsource=medium,
             match=\regexp{Электронный\s+ресурс},
             final]
@@ -71,7 +72,8 @@ isbn=false,% Показывать или нет ISBN
 %            \step[fieldset=series, null]
 %        }
         \map[overwrite]{% перекидываем значения полей howpublished в поля organization для типа online
-            \step[typesource=online, fieldsource=howpublished, fieldset=organization, origfieldval, final]
+            \step[typesource=online, typetarget=online, final]
+            \step[fieldsource=howpublished, fieldset=organization, origfieldval]
             \step[fieldset=howpublished, null]
         }
         % Так отключаем [Электронный ресурс]
@@ -152,6 +154,12 @@ isbn=false,% Показывать или нет ISBN
 %    urlfrom = {Mode of access}
 %}
 %\DeclareFieldFormat{url}{\bibstring{urlfrom}\addcolon\space\url{#1}}
+
+%%% Исправление длины тире в диапазонах %%%
+%\DefineBibliographyExtras{russian}{%
+%  \protected\def\bibrangedash{%
+%    \textendash\penalty\hyphenpenalty}% breakable dash, такой же как для английского языка
+%}
 
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty

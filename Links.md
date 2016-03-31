@@ -17,6 +17,8 @@
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
 * [Памятка полному новичку системы LaTeX](http://kostyrka.ru/blog/archives/837)
 * [What are the most common mistakes that beginners of (La)TeX and Friends make?](http://tex.stackexchange.com/questions/139873/what-are-the-most-common-mistakes-that-beginners-of-latex-and-friends-make)
+* [Why is \\[ … \\] preferable to $$ … $$?](http://tex.stackexchange.com/q/503)
+* [Are \\( and \\) preferable to dollar signs for math mode?](http://tex.stackexchange.com/q/510)
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
@@ -66,3 +68,4 @@
 * [Docear](http://www.docear.org/) — бесплатный Reference Management Software, заточенный под научную деятельность — в основном написание курсовых, диссертационных и прочих научных работ. Комбинирует процесс накопления списка литературных источников с процессом построения MindMaps по автоматически извлеченной из документов разметке, есть возможность ручного изменения получившейся структуры, и в итоге генерирует документ в формате PDF, DOC и т. д. на основе получившихся MindMaps.
 * [texblog.org](http://texblog.org/) — блог с некоторыми интересными заметками про применение ЛаТеХа.
 * [ГОСТ 8.417-2002](http://hoster.bmstu.ru/~ms/normocontrol/gosts/8.417-2002.pdf) «Государственная система обеспечения единства измерений. Единицы величин». Особенно полезен раздел 8.
+* [Иллюстрированная инструкция по пользованию Github](http://blog.harrix.org/?p=933) на примере другого проекта с tex-файлами.
