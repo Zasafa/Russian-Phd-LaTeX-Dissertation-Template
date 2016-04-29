@@ -238,7 +238,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         #min_tick = 0.1
         max_tick = np.amax(Eabs_data[~np.isnan(Eabs_data)])
         #max_tick = 60
-        scale_ticks = np.linspace(min_tick, max_tick, 5)
+        scale_ticks = np.linspace(min_tick+0.1, max_tick, 5)
         #scale_ticks = np.power(10.0, np.linspace(np.log10(min_tick), np.log10(max_tick), 6))
         #scale_ticks = [0.1,0.3,1,3,10, max_tick]
         # Interpolation can be 'nearest', 'bilinear' or 'bicubic'
@@ -267,7 +267,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             cbar.ax.set_yticklabels(['%3.2f' % (a) for a in scale_ticks])
         # pos = list(cbar.ax.get_position().bounds)
         #fig.text(pos[0] - 0.02, 0.925, '|E|/|E$_0$|', fontsize = 14)
-        lp2 = -10.0
+        lp2 = -15.0
         lp1 = -1.0
         if crossplane == 'XZ':
             ax.set_xlabel('Z, ' + WL_units, labelpad=lp1)
@@ -277,7 +277,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             ax.set_ylabel('Y, ' + WL_units, labelpad=lp2)
         elif crossplane=='XYZ':
             ax.set_xlabel(r'$Z,\lambda$'+WL_units, fontsize = 25)
-            ax.set_ylabel(r'$Y:X,\lambda$'+WL_units, fontsize = 25)
+            ax.set_ylabel(r'$Y:X,\lambda$'+WL_units, fontsize = 25, labelpad=lp2)
             ax.axhline(y=0.0, ls='--', dashes=[7,5], color='gray', lw=outline_width)
             bbox_props = dict(boxstyle="round,pad=0.3", fc="white", ec="white", lw=2)
             ax.annotate('E-k', xy=(0.95, 0.95), xycoords='axes fraction', fontsize=21,
