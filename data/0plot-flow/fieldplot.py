@@ -203,6 +203,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
     Ec, Hc, P, coordX, coordZ = GetField(crossplane, npts, factor, x, m, pl)
     Er = np.absolute(Ec)
     Hr = np.absolute(Hc)
+    
     try:
         from matplotlib import cm
         from matplotlib.colors import LogNorm
@@ -227,11 +228,21 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             Eabs_data = np.resize(Hangle, (npts, npts)).T
             label = r'$arg(H_y)$'
 
+        # # Rescale to better show the axes
+        # scale_x = np.linspace(
+        #     min(coordX) * WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
+        # scale_z = np.linspace(
+        #     min(coordZ) * WL / 2.0 / np.pi, max(coordZ) * WL / 2.0 / np.pi, npts)
+
+        # WL units
+        WL = 1
         # Rescale to better show the axes
         scale_x = np.linspace(
-            min(coordX) * WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
+            min(coordX)* WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
         scale_z = np.linspace(
             min(coordZ) * WL / 2.0 / np.pi, max(coordZ) * WL / 2.0 / np.pi, npts)
+
+        ax.locator_params(nbins=5)
 
         # Define scale ticks
         min_tick = np.amin(Eabs_data[~np.isnan(Eabs_data)])

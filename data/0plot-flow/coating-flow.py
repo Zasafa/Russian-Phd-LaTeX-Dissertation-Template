@@ -104,13 +104,14 @@ if __name__ == '__main__':
             comment='PEC-'+basename
             WL_units=''
             #flow_total = 39
-            # SV case
-            #factor = 2.91*x[0]/x[-1]
-            # flow_total = 23 #SV False
 
-            # In glass
-            factor = 2.51*x[0]/x[-1]
-            flow_total = 22
+            # SV case
+            factor = 2.49*x[0]/x[-1]
+            flow_total = 25 #SV False
+
+            # # In glass
+            # factor = 2.51*x[0]/x[-1]
+            # flow_total = 22
 
             #flow_total = 2
             
