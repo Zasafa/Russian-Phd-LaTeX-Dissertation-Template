@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
 #    Copyright (C) 2009-2015 Ovidio Peña Rodríguez <ovidio@bytesfall.com>
@@ -144,13 +144,13 @@ def save_spectra(fname, from_WL, to_WL, total_points, design, extra_width):
     epsSi = GetEpsilon(WLs, "Si-int.txt")
     epsAg = GetEpsilon(WLs, "Ag-int.txt")    
     data = calc(design, extra_width, WLs[0], epsSi[0,1], epsAg[0,1])
-    for i in xrange(len(WLs)):
+    for i in range(len(WLs)):
         data = np.vstack((data,calc(design, extra_width, WLs[i], epsSi[i,1], epsAg[i,1])))
     # epsSi = 18.4631066585 + 0.6259727805j
     # epsAg = -8.5014154589 + 0.7585845411j
     # WL = 500
     # data = calc(design, extra_width, from_WL, epsSi, epsAg)
-    # for i in xrange(len(WLs)):
+    # for i in range(len(WLs)):
     #     data = np.vstack((data,calc(design, extra_width, WLs[i], epsSi, epsAg)))
     
     data = data[1:]
@@ -165,10 +165,10 @@ def load_data(fname):
     range_value = max_value-min_value
     max_step = range_value/20.0
     data_spaced = data[0:1,:]
-    for i in xrange(2, len(data[:,0])+1):
+    for i in range(2, len(data[:,0])+1):
         diff = np.absolute(data[i-1:i,:] - data[i-2:i-1,:])
         need_space = False
-        for j in xrange(2,len(max_step)):
+        for j in range(2,len(max_step)):
             if j > 4:
                 continue
             if max_step[j]<diff[0,j]:
@@ -186,7 +186,7 @@ design = 1 #AgSi
 from_WL = 400
 to_WL = 600
 total_points = 600
-for i in xrange(1):
+for i in range(1):
     extra_width = 0
     fname = "Ag-Si-channels-TotalR036-calc.dat"
     design = 1 #AgSi
@@ -210,7 +210,7 @@ for i in xrange(1):
     data4, data_spaced4 = load_data(fname4)
 
 
-    isAll = False
+#    isAll = False
     isAll = True
     ############################# Plotting ######################
     import numpy.ma as ma
@@ -218,7 +218,7 @@ for i in xrange(1):
     mvals = ma.masked_where(np.nan in data_spaced, vals)
 
     if isAll:
-        fig, axs = plt.subplots(4,figsize=(4,8), sharex=True)#, sharey=True)
+        fig, axs = plt.subplots(3,figsize=(4,6), sharex=True)#, sharey=True)
     else:
         fig, axs = plt.subplots(2,figsize=(4,4), sharex=True)#, sharey=True)
     AgSi=0
@@ -313,25 +313,26 @@ for i in xrange(1):
         lg.draw_frame(False)
 
         plotwidth=2.0
-        l,n = 2, 0                
-        cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth,
-                       solid_joinstyle='round', solid_capstyle='round', color='black'
-                       , label="outer shell"
-                       )
+        # l,n = 0, 0
+        # cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth/1.5,
+        #                solid_joinstyle='round', solid_capstyle='round', color='red'
+        #                , label="внутренний"
+        #                )
 
-        l,n = 1, 0
-        cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth,
-                       solid_joinstyle='round', solid_capstyle='round', color='green'
-                       , label="inner shell"
-                       )
-        l,n = 0, 0
-        cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth/1.5,
-                       solid_joinstyle='round', solid_capstyle='round', color='red'
-                       , label="core"
-                       )
+        # l,n = 1, 0
+        # cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth,
+        #                solid_joinstyle='round', solid_capstyle='round', color='green'
+        #                , label="средний"
+        #                )
+        # l,n = 2, 0
+        # cax = axs[SiAgSi3].plot(data4[:,0], data4[:,l*6+n*2+1], linewidth=plotwidth,
+        #                solid_joinstyle='round', solid_capstyle='round', color='black'
+        #                , label='внешний'
+        #                )
 
-        lg=axs[SiAgSi3].legend(loc='upper left',prop={'size':11})
-        lg.draw_frame(False)
+
+        # lg=axs[SiAgSi3].legend(loc='upper left',prop={'size':11})
+        # lg.draw_frame(False)
 
 
     y_up_lim = 0.29
@@ -344,28 +345,28 @@ for i in xrange(1):
     axs[SiAgSi2].set_ylabel(r'$\tilde{a}_n ,\ \tilde{b}_n$', labelpad=4.1)
     axs[SiAgSi2].set_ylim(0, y_up_lim)
 
-    axs[SiAgSi3].set_ylabel(r'$\left|a_{ln}\right|^2+\left|d_{ln}\right|^2$', labelpad=+3)
-    axs[SiAgSi3].set_xlabel('Wavelengh, nm', labelpad=2)
-    axs[SiAgSi3].set_ylim(0.8, 8000)
+    # axs[SiAgSi3].set_ylabel(r'$\left|a_{ln}\right|^2+\left|d_{ln}\right|^2$', labelpad=+3)
+    axs[SiAgSi2].set_xlabel('Длина волны, нм', labelpad=2)
+    # axs[SiAgSi3].set_ylim(0.8, 8000)
 
     plt.xlim(from_WL,  to_WL)
 
     # axs[AgSi].annotate(r'$\Delta=%i$'%extra_width, xy=(0.09, 0.985), xycoords='axes fraction', fontsize=10,
     #                 horizontalalignment='left', verticalalignment='top')
 
-    axs[AgSi].annotate('(a)', xy=(0.99, 0.985), xycoords='axes fraction', fontsize=10,
+    axs[AgSi].annotate('(г)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
                     horizontalalignment='right', verticalalignment='top')
-    axs[SiAgSi].annotate('(b)', xy=(0.99, 0.985), xycoords='axes fraction', fontsize=10,
+    axs[SiAgSi].annotate('(д)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
                     horizontalalignment='right', verticalalignment='top')
     if isAll:
-        axs[SiAgSi2].annotate('(c)', xy=(0.99, 0.985), xycoords='axes fraction', fontsize=10,
+        axs[SiAgSi2].annotate('(е)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
                     horizontalalignment='right', verticalalignment='top')
-        axs[SiAgSi3].annotate('(d)', xy=(0.99, 0.985), xycoords='axes fraction', fontsize=10,
-                    horizontalalignment='right', verticalalignment='top')
-        axs[SiAgSi3].set_yscale('log')
-        axs[SiAgSi3].set_yticks([1, 10, 100, 1000])
+        # axs[SiAgSi3].annotate('(d)', xy=(0.99, 0.985), xycoords='axes fraction', fontsize=10,
+        #             horizontalalignment='right', verticalalignment='top')
+        # axs[SiAgSi3].set_yscale('log')
+        # axs[SiAgSi3].set_yticks([1, 10, 100, 1000])
         
-        axs[SiAgSi3].tick_params(axis='y', which='major', pad=-0.65)
+        # axs[SiAgSi3].tick_params(axis='y', which='major', pad=-0.65)
 
        # fmt = tkr.ScalarFormatter()
         # fmt.set_scientific(True)
@@ -374,7 +375,7 @@ for i in xrange(1):
     fig.subplots_adjust(hspace=.05)
     plt.minorticks_off()
     fname="2015-04-01-SiAgSi-ab-spectra4"
-    plt.savefig(fname+".eps",pad_inches=0.02, bbox_inches='tight')
+    plt.savefig(fname+".pdf",pad_inches=0.02, bbox_inches='tight')
     #plt.draw()
 
     #plt.show()
