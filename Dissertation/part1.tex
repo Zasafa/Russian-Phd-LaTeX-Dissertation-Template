@@ -1,3 +1,7 @@
+\def\slantfrac#1#2{ \hspace{3pt}\!^{#1}\!\!\hspace{1pt}/
+  \hspace{2pt}\!\!_{#2}\!\hspace{3pt}
+} %Красивые дроби в строчку (например, 1/2)
+
 % \begin{align*}
 % f(x) =& x^2\! +3x\! +2 \\
 % f(x) =& x^2+3x+2 \\
@@ -99,14 +103,14 @@ CST и использовал меньшее количество операти
 всего, это теория Ми для многослойной сферы~\cite{Yang-2003} и её
 развитие в виде метода Т-матриц для множества сфер (Multiple Sphere
 T-Matrix)~\cite{MacKowski-2012}.  По сравнению с более общими методами
-этот подход позволяет значительно сократить объём вычислений,
-необходимый, например, для расчёта сечения рассеяния и сечения
-поглощения.  Дополнительным преимуществом теории Ми является
+применение этой теории позволяет значительно сократить объём
+вычислений, необходимый, например, для расчёта сечения рассеяния и
+сечения поглощения.  Дополнительным преимуществом теории Ми является
 возможность разделять вклады электрических и магнитных мультполей в
 общий электромагнитный отклик частицы.
 
 
-\section{Теория Ми для многослойной сферы}
+\section{Теория Ми для многослойной сферы: расчёт ближнего поля}
 \label{sec:Mie}
 
 Более 100 лет назад Густав Ми опубликовал свою оригинальную
@@ -128,8 +132,9 @@ T-Matrix)~\cite{MacKowski-2012}.  По сравнению с более общи
 сложность при этом связана с численной реализацией этих моделей.
 
 Рассмотрим рассеяние плоской волны, поляризованной вдоль
-координаты~$x$.  В сферических координатах такую волну можно записать
-как:
+координаты~$x$, следуя классическому подходу, изложенному в книге
+К.Ф.~Бохрена и Д.Р.~Хаффмана~\cite{Bohren-1983}.  В сферических
+координатах такую волну можно записать как:
 \begin{equation*}
   \label{eq:bh4.21}
   {\rm \mathbf{E}}_i = E_0 e^{i{\rm k}r{\rm cos}\theta}
@@ -332,6 +337,10 @@ $D^{(3)}_{n} = \zeta^{\prime}_{n}/\zeta_{n}$ это логарифмически
 (\ref{eq:3p2}), можно вычислить величину электрического и магнитного
 поля внутри и снаружи многослойной сферы.
 
+Решение системы
+уравнений~(\labelcref{eq:A2d1,eq:A2d2,eq:A2d3,eq:A2d4}) может быть
+выраженно и в виде прямой рекуррентной зависимости. Такое решение было
+получено, однако
 TODO возможно решение в виде прямой рекуррентной зависимости
 
 При этом возникает дополнительная сложность, связанная с вычислением
@@ -343,7 +352,7 @@ TODO возможно решение в виде прямой рекуррент
   {\rm\mathbf{M}}_{o1n}^{(j)} ={\rm cos} \phi\,
          \pi_n\!\left({\rm  cos} \theta\right)
          z_n^{(j)}\!\left( \rho \right)\,
-         &{\rm \mathbf{ \^e}}_{\theta}   \\
+         {\rm \mathbf{ \^e}}_{\theta}   
 -\,{\rm sin} \phi\,
          \tau_n\!\left({\rm  cos} \theta\right)
          z_n^{(j)}\!\left( \rho \right)\,
@@ -357,7 +366,7 @@ TODO возможно решение в виде прямой рекуррент
   {\rm\mathbf{M}}_{e1n}^{(j)} =-\,{\rm sin} \phi\,
          \pi_n\!\left({\rm  cos} \theta\right)
          z_n^{(j)}\!\left( \rho \right)\,
-         &{\rm \mathbf{ \^e}}_{\theta}   \\
+         {\rm \mathbf{ \^e}}_{\theta}   
 -\, {\rm cos} \phi\,
          \tau_n\!\left({\rm  cos} \theta\right)
          z_n^{(j)}\!\left( \rho \right)\,
@@ -379,14 +388,14 @@ TODO возможно решение в виде прямой рекуррент
 {\rm sin} \phi\,
          \tau_n\!\left({\rm  cos} \theta\right)
          \frac{
-            \left[z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
               }{\rho}\,
             &{\rm \mathbf{ \^e}}_{\theta}   \\
 +\,
 {\rm cos} \phi\,
          \pi_n\!\left({\rm  cos} \theta\right)
          \frac{
-            \left[z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
               }{\rho}\,
             &{\rm \mathbf{ \^e}}_{\phi}\:,
 \end{alignedat}
@@ -406,29 +415,137 @@ TODO возможно решение в виде прямой рекуррент
 {\rm cos} \phi\,
          \tau_n\!\left({\rm  cos} \theta\right)
          \frac{
-            \left[z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
               }{\rho}\,
             &{\rm \mathbf{ \^e}}_{\theta}   \\
 +\,
 {\rm sin} \phi\,
          \pi_n\!\left({\rm  cos} \theta\right)
          \frac{
-            \left[z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
               }{\rho}\,
             &{\rm \mathbf{ \^e}}_{\phi}\:,
 \end{alignedat}
 \end{equation}
-где
+где обезразмеренное расстояние до центра сферы $\rho=kr$, а угловые
+функции
+\begin{equation*}
+  \label{eq:bh4.46}
+  \pi_n=\frac{P_n^1}{{\rm cos}\theta} \qquad \mbox{и} \qquad \tau_n = \frac{dP_n^1}{d\theta}
+\end{equation*}
+выражены через функцию Лежандра $P_n^m$, которая
+задаётся через производную полинома Лежандра $P_n$ в виде:
+\begin{equation*}
+  \label{eq:bh4.25}
+  P_n^m\left(\mu\right)=\left(1-\mu^2\right)^{m/2}\frac{d^{\,m}P_n(\mu)}{d\mu^m}\:,
+\end{equation*}
+где $\mu = {\rm cos}\theta$. Чтобы расчитать значения угловых функций
+необходимо воспользоваться рекуррентными
+соотношениями~\cite{Wiscombe-1980}
+\begin{equation*}
+  \label{eq:bh4.47}
+  \pi_0 = 0, \qquad \pi_1 = 1, \qquad
+  \pi_n = \frac{2n-1}{n-1}{\rm cos}\theta\,\pi_{n-1} - \frac{n}{n-1}\pi_{n-2}\:,
+\end{equation*}
+\begin{equation*}
+  \tau_n = n{\rm cos}\theta\,\pi_{n} + (n+1)\pi_{n-1}\:,
+\end{equation*}
+доказавшими свою численную устойчивость.  Таким образом, основную
+сложность при вычислении значений сферических векторных гармоник
+представляет суммирование рядов, выражающих сферические функции
+Бесселя.  Плохая сходимость таких рядов особенно заметна в случае
+комплексного аргумента с большой мнимой частью.  Для решения этой
+проблемы в настоящей работе был предложен следующий вид сферических
+векторных гармоник:
+\begin{equation}
+  \label{eq:2p1}
+ \begin{alignedat}{2}
+  {\rm\mathbf{M}}_{o1n}^{(j)} ={\rm cos} \phi\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{r_n^{(j)}\!\left( \rho \right)}{\rho}\,
+         {\rm \mathbf{ \^e}}_{\theta}   
+-\,{\rm sin} \phi\,
+         \tau_n\!\left({\rm  cos} \theta\right)
+         \frac{r_n^{(j)}\!\left( \rho \right)}{\rho}\,
+         &{\rm \mathbf{ \^e}}_{\phi}\:,
+ \end{alignedat}
+\end{equation}
+%
+\begin{equation}
+  %\label{eq:2p2}
+ \begin{alignedat}{2}
+  {\rm\mathbf{M}}_{e1n}^{(j)} =-\,{\rm sin} \phi\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{r_n^{(j)}\!\left( \rho \right)}{\rho}\,
+         {\rm \mathbf{ \^e}}_{\theta}   
+-\, {\rm cos} \phi\,
+         \tau_n\!\left({\rm  cos} \theta\right)
+         \frac{r_n^{(j)}\!\left( \rho \right)}{\rho}\,
+         &{\rm \mathbf{ \^e}}_{\phi}\:,
+ \end{alignedat}
+\end{equation}
+%
+\begin{equation}
+  %\label{eq:2p3}
+ \begin{alignedat}{2}
+{\rm \mathbf{N}}_{o1n}^{(j)} = \,{\rm sin} \phi\,n\!\left(n+1\right)
+         {\rm sin}\theta\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{
+           r_n^{(j)}\!\left( \rho \right)
+              }{\rho^2}\,
+           &{\rm \mathbf{ \^e}}_{r}   \\
++\,
+{\rm sin} \phi\,
+         \tau_n\!\left({\rm  cos} \theta\right)
+         \frac{
+           D_n^{(j)}\!(\rho) r_n^{(j)}\!(\rho)
+              }{\rho}\,
+            &{\rm \mathbf{ \^e}}_{\theta}   \\
++\,
+{\rm cos} \phi\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{
+           D_n^{(j)}\!(\rho) r_n^{(j)}\!(\rho)
+              }{\rho}\,
+            &{\rm \mathbf{ \^e}}_{\phi}\:,
+\end{alignedat}
+\end{equation}
+%
+\begin{equation}
+  %\label{eq:2p4}
+ \begin{alignedat}{2}
+{\rm \mathbf{N}}_{e1n}^{(j)} = \,{\rm cos} \phi\,n\!\left(n+1\right)
+         {\rm sin}\theta\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{
+               r_n^{(j)}\!\left( \rho^2 \right)
+              }{\rho}\,
+           &{\rm \mathbf{ \^e}}_{r}   \\
++\,
+{\rm cos} \phi\,
+         \tau_n\!\left({\rm  cos} \theta\right)
+         \frac{
+           D_n^{(j)}\!(\rho) r_n^{(j)}\!(\rho)
+              }{\rho}\,
+            &{\rm \mathbf{ \^e}}_{\theta}   \\
++\,
+{\rm sin} \phi\,
+         \pi_n\!\left({\rm  cos} \theta\right)
+         \frac{
+           D_n^{(j)}\!(\rho) r_n^{(j)}\!(\rho)
+              }{\rho}\,
+            &{\rm \mathbf{ \^e}}_{\phi}\:,
+\end{alignedat}
+\end{equation}
+где используются функции Риккати-Бесселя $r_n^{(1)} = \psi_n$ и
+$r_n^{(3)} = \zeta_n$ и их логарифмические производные, они, в свою
+очередь, могут быть выражены в виде рекуррентных соотношений с хорошей
+сходимостью для более широкого диапазона
+агрументов~\cite{Wiscombe-1980,Mackowski-1990}, благодаря чему в
+настоящей работе удалось заметно увеличить численную устойчивость
+расчёта по теории Ми.
 
-
-%                     -i d_n^{(l)} {\rm \mathbf{N}}_{e1n}^{(1)}
-
-
-
-
- через
-логарифмические производные функций Риккати-Бесселя, удалось заметно
-увеличить численную устойчивость расчёта.
 
 Полученные выражения позволили полностью переработать
 программу~\cite{Scattnlay-web} для проведения расчёта.  В результате
@@ -436,15 +553,14 @@ TODO возможно решение в виде прямой рекуррент
 существовавших алгоритмических решений позволила сократить время
 вычислений в 2.2 раза.
 
+\section{Компьютерная реализация алгоритма расчёта по теории Ми.}
+\label{sec:code}
+
 
 % Ссылки на собственные работы:~\cite{vakbib1, confbib1}
-
 % Сошлёмся на приложения: Приложение \ref{AppendixA}, Приложение \ref{AppendixB2}.
-
 % Сошлёмся на формулу: формула \eqref{eq:equation1}.
-
 % Сошлёмся на изображение: рисунок \ref{img:knuth}.
-
 
 % Используя команду \verb|\labelcref| из пакета \verb|cleveref|, можно
 % красиво ссылаться сразу на несколько формул
