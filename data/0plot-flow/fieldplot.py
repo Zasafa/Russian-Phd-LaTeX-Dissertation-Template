@@ -234,8 +234,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         # scale_z = np.linspace(
         #     min(coordZ) * WL / 2.0 / np.pi, max(coordZ) * WL / 2.0 / np.pi, npts)
 
-        # WL units
-        WL = 1
+        # # WL units
+        # WL = 1
         # Rescale to better show the axes
         scale_x = np.linspace(
             min(coordX)* WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
@@ -302,7 +302,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         # # This part draws the nanoshell
         from matplotlib import patches
         from matplotlib.path import Path
-        for xx in [x[0],x[-1]]:
+        # for xx in [x[0],x[-1]]:
+        for xx in x:
             r = xx * WL / 2.0 / np.pi
             s1 = patches.Arc((0, 0), 2.0 * r, 2.0 * r,  angle=0.0, zorder=1.8,
                              theta1=0.0, theta2=360.0, linewidth=outline_width, color='black')
