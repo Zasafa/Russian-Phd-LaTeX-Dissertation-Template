@@ -203,7 +203,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
     Ec, Hc, P, coordX, coordZ = GetField(crossplane, npts, factor, x, m, pl)
     Er = np.absolute(Ec)
     Hr = np.absolute(Hc)
-    
+    crop = 10.0
     try:
         from matplotlib import cm
         from matplotlib.colors import LogNorm
@@ -213,7 +213,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             label = r'$\operatorname{Re}(E \times H)$'
         elif field_to_plot == 'Eabs':
             Eabs = np.sqrt(Er[:, 0]**2 + Er[:, 1]**2 + Er[:, 2]**2)
-            Eabs_data = np.resize(Eabs, (npts, npts)).T
+            Eabs_data = np.resize(Eabs, (npts, npts)).T[int(npts/crop):-int(npts/crop),:]
             label = r'$|E|$'
         elif field_to_plot == 'Habs':
             Habs = np.sqrt(Hr[:, 0]**2 + Hr[:, 1]**2 + Hr[:, 2]**2)
@@ -234,22 +234,24 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         # scale_z = np.linspace(
         #     min(coordZ) * WL / 2.0 / np.pi, max(coordZ) * WL / 2.0 / np.pi, npts)
 
-        # # WL units
-        # WL = 1
+        # WL units
+        WL = 1
+        WL_units = r'$\lambda$'
         # Rescale to better show the axes
+        crop_z = (max(coordZ)-min(coordZ))/crop
         scale_x = np.linspace(
-            min(coordX)* WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
+             min(coordX) * WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
         scale_z = np.linspace(
-            min(coordZ) * WL / 2.0 / np.pi, max(coordZ) * WL / 2.0 / np.pi, npts)
+            (min(coordZ)+crop_z)* WL / 2.0 / np.pi, (max(coordZ)-crop_z) * WL / 2.0 / np.pi, npts-int(npts*2/crop))
 
         ax.locator_params(nbins=5)
 
         # Define scale ticks
         min_tick = np.amin(Eabs_data[~np.isnan(Eabs_data)])
-        #min_tick = 0.1
         max_tick = np.amax(Eabs_data[~np.isnan(Eabs_data)])
-        #max_tick = 60
-        scale_ticks = np.linspace(min_tick+0.1, max_tick, 5)
+        min_tick = 0.0
+        max_tick = 2.59
+        scale_ticks = np.linspace(min_tick, max_tick, 10)
         #scale_ticks = np.power(10.0, np.linspace(np.log10(min_tick), np.log10(max_tick), 6))
         #scale_ticks = [0.1,0.3,1,3,10, max_tick]
         # Interpolation can be 'nearest', 'bilinear' or 'bicubic'
@@ -263,7 +265,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         #         horizontalalignment='right',
         #         verticalalignment='bottom',
         #         transform=ax.transAxes)
-        cax = ax.imshow(Eabs_data, interpolation='nearest', cmap=cm.jet,
+        cax = ax.imshow(Eabs_data, interpolation='nearest', cmap=cm.rainbow,
                         origin='lower', vmin=min_tick, vmax=max_tick, extent=(min(scale_x), max(scale_x), min(scale_z), max(scale_z))
                         # ,norm = LogNorm()
                         )
@@ -278,7 +280,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             cbar.ax.set_yticklabels(['%3.2f' % (a) for a in scale_ticks])
         # pos = list(cbar.ax.get_position().bounds)
         #fig.text(pos[0] - 0.02, 0.925, '|E|/|E$_0$|', fontsize = 14)
-        lp2 = -15.0
+        lp2 = -5.0
         lp1 = -1.0
         if crossplane == 'XZ':
             ax.set_xlabel('Z, ' + WL_units, labelpad=lp1)
@@ -302,8 +304,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         # # This part draws the nanoshell
         from matplotlib import patches
         from matplotlib.path import Path
-        # for xx in [x[0],x[-1]]:
-        for xx in x:
+        for xx in [x[0],x[-1]]:
+        #for xx in x:
             r = xx * WL / 2.0 / np.pi
             s1 = patches.Arc((0, 0), 2.0 * r, 2.0 * r,  angle=0.0, zorder=1.8,
                              theta1=0.0, theta2=360.0, linewidth=outline_width, color='black')

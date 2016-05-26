@@ -105,8 +105,12 @@ if __name__ == '__main__':
             WL_units=''
             #flow_total = 39
 
-            # SV case
-            factor = 2.49*x[0]/x[-1]
+            # # SV case
+            # factor = 2.49*x[0]/x[-1]
+            # flow_total = 25 #SV False
+
+            # DV case Efield
+            factor = 2.2
             flow_total = 25 #SV False
 
             # # In glass
@@ -117,28 +121,28 @@ if __name__ == '__main__':
             
             print factor
 
-            #flow_total = 4
+            flow_total = 0
             #crossplane='XZ'
-            crossplane='XYZ'
-            #crossplane='YZ'
+            #crossplane='XYZ'
+            crossplane='YZ'
             #crossplane='XY'
 
             # Options to plot: Eabs, Habs, Pabs, angleEx, angleHy
             #field_to_plot='Pabs'
-            #field_to_plot='Eabs'
+            field_to_plot='Eabs'
             
-            field_to_plot='angleEx'
+            #field_to_plot='angleEx'
             #field_to_plot='angleHy'
             print "x =", x
             print "m =", m
 
             import matplotlib.pyplot as plt
-            plt.rcParams.update({'font.size': 21})
+            plt.rcParams.update({'font.size': 14})
             fig, axs = plt.subplots(1,1)#, sharey=True, sharex=True)
             fig.tight_layout()
             fieldplot(fig, axs, x,m, wl, comment, WL_units, crossplane, field_to_plot, npts, factor, flow_total,
                       subplot_label=' ',is_flow_extend=False
-                      , outline_width=2.1
+                      , outline_width=1.1
                       , pl=0 #PEC layer starts the design
                       )
             # fieldplot(fig, axs, x[0],m[0], wl, comment, WL_units, crossplane, field_to_plot, npts, factor, flow_total,

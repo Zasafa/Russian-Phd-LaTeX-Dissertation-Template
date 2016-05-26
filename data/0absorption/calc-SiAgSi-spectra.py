@@ -143,6 +143,9 @@ def save_spectra(fname, from_WL, to_WL, total_points, design, extra_width):
     WLs = np.linspace(from_WL, to_WL, total_points)
     epsSi = GetEpsilon(WLs, "Si-int.txt")
     epsAg = GetEpsilon(WLs, "Ag-int.txt")    
+    # epsSi = GetEpsilon(WLs, "Si.txt")
+    # epsAg = GetEpsilon(WLs, "Ag.txt")    
+
     data = calc(design, extra_width, WLs[0], epsSi[0,1], epsAg[0,1])
     for i in range(len(WLs)):
         data = np.vstack((data,calc(design, extra_width, WLs[i], epsSi[i,1], epsAg[i,1])))
@@ -185,11 +188,16 @@ design = 1 #AgSi
 # WL = 500
 from_WL = 400
 to_WL = 600
+
+# from_WL = 700
+# to_WL = 900
+
 total_points = 600
 for i in range(1):
     extra_width = 0
     fname = "Ag-Si-channels-TotalR036-calc.dat"
     design = 1 #AgSi
+    #design = 4
     save_spectra(fname, from_WL, to_WL, total_points, design, extra_width)
     data, data_spaced = load_data(fname)
 
