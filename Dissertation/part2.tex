@@ -74,7 +74,67 @@
 стало возможно благодаря использованию программных библиотек,
 поддерживающих стандарт Message Parsing Interface (MPI).
 Разработанное~\cite{JADE-web} программное обеспечение успешно проходит
-набор стандартных тестов для алгоритмов оптимизации.  Было получено
+набор стандартных тестов~\cite{Schwefel-1981,Rosenbrock-1960,Muhlenbein-1991,back-1996,Griewank-1981} для алгоритмов оптимизации. 
+\begin{table} [ht]%
+	\caption{Тестовые функции для оптимизации. $D$ -
+          размерность. Для всех функций значение в точке глобального
+          минимума равно нулю. }%
+	\label{tbl:test-functions}% label всегда желательно идти после caption
+    \renewcommand{\arraystretch}{1.6}%% Увеличение расстояния между рядами, для улучшения восприятия.
+	\def\tabularxcolumn#1{m{#1}}
+	\begin{tabularx}{\textwidth}{@{}>{\centering}m{2.9cm}>{\centering}m{3.1cm}>{\raggedright\arraybackslash}X@{}}% Вертикальные полосы не используются принципиально, как и лишние горизонтальные (допускается по ГОСТ 2.105 пункт 4.4.5) % @{} позволяет прижиматься к краям
+        \toprule     %%% верхняя линейка
+        Имя           & Стартовый диапазон параметров & Функция                                                                           \\
+        \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
+        сфера         & $\left[-100,\,100\right]^D$   &
+        $\begin{aligned}\textstyle f_1(x)=\sum_{i=1}^Dx_i^2\end{aligned}$                                                        \\
+        Schwefel 2.22 & $\left[-10,\,10\right]^D$     &
+        $\begin{aligned}\textstyle f_2(x)=\sum_{i=1}^D|x_i|+\prod_{i=1}^D|x_i|\end{aligned}$                                     \\
+        Schwefel 1.2  & $\left[-100,\,100\right]^D$   & $\begin{aligned}\textstyle f_3(x)=\sum_{i=1}^D\left(\sum_{j=1}^ix_j\right)^2\end{aligned}$                               \\
+        Schwefel 2.21 & $\left[-100,\,100\right]^D$   & $\begin{aligned}\textstyle f_4(x)={\rm max}_i\!\left\{\left|x_i\right|\right\}\end{aligned}$                             \\
+        Rosenbrock    & $\left[-30,\,30\right]^D$     & $\begin{aligned}\textstyle f_5(x)=\sum_{i=1}^{D-1}\left[100\!\left(x_{i+1}-x_i^2\right)^2+(x_i-1)^2\right]\end{aligned}$ \\
+        ступенчатая   & $\left[-100,\,100\right]^D$   & $\begin{aligned}\textstyle f_6(x)=\sum_{i=1}^D\big\lfloor x_i+0.5\big\rfloor^2\end{aligned}$                             \\ 
+        зашумлённая
+        квартическая  & $\left[-1.28,\,1.28\right]^D$ & $\begin{aligned}\textstyle f_7(x)=\sum_{i=1}^Dix_i^4+rand[0,1)\end{aligned}$                                             \\
+        Schwefel 2.26 & $\left[-500,\,500\right]^D$   &$\begin{aligned}f_8(x)= & \textstyle\sum_{i=1}^D-x_i\,{\rm sin}\sqrt{|x_i|} \\
+                    & \vphantom{\sum}+ D\cdot
+                    418.98288727243369 \end{aligned}$\\
+        Rastrigin     & $\left[-5.12,\,5.12\right]^D$ &
+        $\begin{aligned}\textstyle
+          f_9(x)=\sum_{i=1}^D\left[x_i^2-10\,{\rm cos}(2\pi
+            x_i)+10\right]\end{aligned}$ \\
+  Ackley        & $\left[-32,\,32\right]^D$     &\rule{0pt}{6ex}$\begin{aligned}f_{10}(x)= & \textstyle -20\, {\rm exp}\!\left(-0.2\sqrt{\frac{1}{D}\sum_{i=1}^Dx_i^2} \right)\\
+                    & \textstyle - {\rm exp}\left(\frac{1}{D}\sum_{i=1}^D{\rm
+                        cos}(2\pi x_i)  \right)  + 20 + e \end{aligned}$ \\
+        Griewank      & $\left[-600,\,600\right]^D$
+        &$\begin{aligned}f_{11}(x)= & \textstyle \frac{1}{4000}
+          \sum_{i=1}^{D}x_i^2 - \prod_{i=1}^D{\rm
+            cos}\left(x_i/\sqrt{i}\right) +1     \end{aligned}$   \\
+        штрафная 1    & $\left[-50,\,50\right]^D$     &
+        $\begin{aligned}f_{12}(x)= & \textstyle \frac{\pi}{D}
+          \left\{ 10\,{\rm sin}^2(\pi y_1) +
+            \sum_{i=1}^{D-1}(y_i-1)^2\left[1+10\,{\rm sin}^2(\pi
+              y_{i+1})\right]+(y_D-1)^2 \right\} +\sum_{i=1}^D u(x_i,10,100,4)            \end{aligned}$  \\
+        штрафная 2    & $\left[-50,\,50\right]^D$     &                                                                                   \\
+        % \midrule%%% тонкий разделитель
+        % \multicolumn{5}{@{}p{\textwidth}}{%
+        %     \vspace*{-4ex}% этим подтягиваем повыше
+        %     \hspace*{2.5em}% абзацный отступ - требование ГОСТ 2.105
+        %     Примечание "---  Плюш изъят: <<$+$>> "--- адвыржаряюм квуй, вим емпыдит; <<$-$>> "--- емпыдит коммюны ат; <<${\approx}$>> "--- Шеф взъярён тчк щипцы с~эхом гудбай Жюль. Эй, жлоб! Где туз? Прячь юных съёмщиц в~шкаф. Экс-граф?
+        % }
+        %                                                                          \\
+        \bottomrule %%% нижняя линейка
+	\end{tabularx}%
+\end{table}
+
+
+
+
+
+
+
+
+ Было получено
 свидетельство о государственной регистрации программы для
 ЭВМ~№2014611568.
 \clearpage
