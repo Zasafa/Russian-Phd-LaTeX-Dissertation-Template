@@ -122,30 +122,28 @@
         Rosenbrock    &$\left[-30,\,30\right]^D$     &$\begin{aligned}\textstyle f_5(x)=\sum_{i=1}^{D-1}\left[100\!\left(x_{i+1}-x_i^2\right)^2+(x_i-1)^2\right]\end{aligned}$ \\
         ступенчатая   &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_6(x)=\sum_{i=1}^D\big\lfloor x_i+0.5\big\rfloor^2\end{aligned}$                             \\ 
 зашумлённая квартическая  &$\left[-1.28,\,1.28\right]^D$ &$\begin{aligned}\textstyle f_7(x)=\sum_{i=1}^Dix_i^4+rand[0,1)\end{aligned}$\vspace*{2ex}\\
-        Schwefel 2.26 &$\left[-500,\,500\right]^D$   &$\begin{aligned}f_8(x)= &\textstyle\sum_{i=1}^D-x_i\,{\rm sin}\sqrt{|x_i|}\,+ \\
+        Schwefel 2.26 &$\left[-500,\,500\right]^D$   &$\begin{aligned}f_8(x)= &\textstyle\sum_{i=1}^D-x_i\,\sin\sqrt{|x_i|}\,+ \\
                     &\vphantom{\sum}+ D\cdot
                     418.98288727243369 \end{aligned}$\\
         Rastrigin     &$\left[-5.12,\,5.12\right]^D$ &
         $\begin{aligned}\textstyle
-          f_9(x)=\sum_{i=1}^D\left[x_i^2-10\,{\rm cos}(2\pi
+          f_9(x)=\sum_{i=1}^D\left[x_i^2-10\,\cos(2\pi
             x_i)+10\right]\end{aligned}$\vspace*{2ex}\\
   Ackley        &$\left[-32,\,32\right]^D$     &$\begin{aligned}f_{10}(x)= &\textstyle -20\, {\rm exp}\!\left(-0.2\sqrt{\frac{1}{D}\sum_{i=1}^Dx_i^2} \right)-\\
-                    &\textstyle - {\rm exp}\left(\frac{1}{D}\sum_{i=1}^D{\rm
-                        cos}(2\pi x_i)  \right)  + 20 + e \end{aligned}$ \\
+                    &\textstyle - {\rm exp}\left(\frac{1}{D}\sum_{i=1}^D\cos(2\pi x_i)  \right)  + 20 + e \end{aligned}$ \\
         Griewank      &$\left[-600,\,600\right]^D$
         &$\begin{aligned}f_{11}(x)= &\textstyle \frac{1}{4000}
-          \sum_{i=1}^{D}x_i^2 - \prod_{i=1}^D{\rm
-            cos}\left(x_i/\sqrt{i}\right) +1     \end{aligned}$ \vspace*{3ex} \\
+          \sum_{i=1}^{D}x_i^2 - \prod_{i=1}^D\cos\left(x_i/\sqrt{i}\right) +1     \end{aligned}$ \vspace*{3ex} \\
         штрафная 1    &$\left[-50,\,50\right]^D$     &
         $\begin{aligned}f_{12}(x)= &\textstyle \frac{\pi}{D}
-          \Big\{ 10\,{\rm sin}^2(\pi y_1) +\\ &+
-          \textstyle \sum_{i=1}^{D-1}(y_i-1)^2\left[1+10\,{\rm sin}^2(\pi
+          \Big\{ 10\,\sin^2(\pi y_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(y_i-1)^2\left[1+10\,\sin^2(\pi
               y_{i+1})\right] +\\ &+(y_D-1)^2 \Big\} +\textstyle\sum_{i=1}^D u(x_i,\,10,\,100,\,4)            \end{aligned}$ \vspace*{2ex} \\
         штрафная 2    &$\left[-50,\,50\right]^D$     &
         $\begin{aligned}f_{13}(x)= &\textstyle 0.1
-          \Big\{{\rm sin}^2(3\pi x_1) +\\ &+
-          \textstyle \sum_{i=1}^{D-1}(x_i-1)^2\left[1+{\rm sin}^2(3 \pi
-              x_{i+1})\right] + \\ &+(x_D-1)^2\left[1+{\rm sin}^2(2\pi
+          \Big\{\sin^2(3\pi x_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(x_i-1)^2\left[1+\sin^2(3 \pi
+              x_{i+1})\right] + \\ &+(x_D-1)^2\left[1+\sin^2(2\pi
               x_D)\right] \Big\} +\\ &+\textstyle\sum_{i=1}^D u(x_i,\,5,\,100,\,4)            \end{aligned}$            \vspace*{1ex}\\
         \midrule%%% тонкий разделитель
         \multicolumn{3}{@{}p{\textwidth}}{%
