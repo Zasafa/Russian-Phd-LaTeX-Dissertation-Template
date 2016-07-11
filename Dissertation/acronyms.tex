@@ -3,7 +3,10 @@
 \noindent
 \addtocounter{table}{-1}% Нужно откатить на единицу счетчик номеров таблиц, так как следующая таблица сделана для удобства представления информации по ГОСТ
 %\begin{longtabu} to \dimexpr \textwidth-5\tabcolsep {r X}
+\begingroup % Ограничиваем область видимости arraystretch
+\renewcommand{\arraystretch}{1.2}%% Увеличение расстояния между рядами, для улучшения восприятия.
 \begin{longtabu} to \textwidth {r X}
+
 % Жирное начертание для математических символов может иметь
 % дополнительный смысл, поэтому они приводятся как в тексте
 % диссертации
@@ -85,5 +88,6 @@ $z$ & комплексный аргумент\\
 \textbf{PML} & perfectly matched layer, идеально поглощающий слой\\
 \textbf{TLM} & transmission line matrix method, метод матриц линий
 передач\\
+\textbf{ГПСЧ} & генератор псевдослучайных чисел\\
 \textbf{ПО} & программное обеспечение\\
-\end{longtabu}
+\end{longtabu} \endgroup
