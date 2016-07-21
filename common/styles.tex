@@ -28,12 +28,26 @@
 \linespread{1.42}                    % Полуторный интервал (ГОСТ Р 7.0.11-2011, 5.3.6)
 
 %%% Выравнивание и переносы %%%
-\sloppy                             % Избавляемся от переполнений
+%% http://tex.stackexchange.com/questions/241343/what-is-the-meaning-of-fussy-sloppy-emergencystretch-tolerance-hbadness
+%% http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1em %поиграться стоит
+\hfuzz 0.3pt
+\vfuzz \hfuzz
+%\raggedbottom
+%\sloppy                             % Избавляемся от переполнений
 \clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
-\righthyphenmin=2 %Разрешаем перенос двух букв
-\tolerance=500 \hyphenpenalty=100 \doublehyphendemerits=50000
-\finalhyphendemerits=10000 \brokenpenalty=10000 
+\widowpenalty=10000                 % Запрещаем разрыв страницы после
+                                % последней строки абзаца
+
+% %%% Выравнивание и переносы %%%
+% \sloppy                             % Избавляемся от переполнений
+% \clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
+% \widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
+% \righthyphenmin=2 %Разрешаем перенос двух букв
+% \tolerance=500 \hyphenpenalty=100 \doublehyphendemerits=50000
+% \finalhyphendemerits=10000 \brokenpenalty=10000 
 
 %%% Подписи %%%
 \captionsetup{%
