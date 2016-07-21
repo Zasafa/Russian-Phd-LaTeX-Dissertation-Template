@@ -89,7 +89,11 @@
 % \needspace{2\baselineskip} располагает две последующие строчки на
 % одной странице. Тут используется, чтобы слово "задачи" и "положения"
 % оказались на одной странице со списком из задач и положений
-\usepackage{needspace}
+%\usepackage{needspace}
+\makeatletter 
+\newcommand\mynobreakpar{\par\nobreak\@afterheading} 
+\makeatother
+
 
 %%% Счётчики %%%
 \usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц
