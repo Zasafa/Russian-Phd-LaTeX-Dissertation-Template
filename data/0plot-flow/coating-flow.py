@@ -140,7 +140,8 @@ if __name__ == '__main__':
             plt.rcParams.update({'font.size': 14})
             fig, axs = plt.subplots(1,1)#, sharey=True, sharex=True)
             fig.tight_layout()
-            fieldplot(fig, axs, x,m, wl, comment, WL_units, crossplane, field_to_plot, npts, factor, flow_total,
+            wl=3.75            
+            fieldplot(fig, axs, wl, comment, WL_units, crossplane, field_to_plot, npts, factor, flow_total,
                       subplot_label=' ',is_flow_extend=False
                       , outline_width=1.1
                       , pl=0 #PEC layer starts the design
