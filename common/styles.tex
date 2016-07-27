@@ -2,42 +2,72 @@
 \ifxetexorluatex
     \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
     \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
-    \setmonofont{Courier New}
-    \newfontfamily\cyrillicfonttt{Courier New}
+    \setmonofont{cour}[                     % Courier New
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfonttt{cour}[    % Courier New
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
     \ifXeTeX
         \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
     \else
         \defaultfontfeatures{Ligatures=TeX}
     \fi
-    \setmainfont{Times New Roman}
-    \newfontfamily\cyrillicfont{Times New Roman}
-    \setsansfont{Arial}
-    \newfontfamily\cyrillicfontsf{Arial}
+    \setmainfont{times}[                    % Times New Roman
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfont{times}[     % Times New Roman
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \setsansfont{arial}[                    % Arial
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfontsf{arial}[   % Arial
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
 \else
     \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
 
-%%% Выравнивание и переносы %%%
-%% http://tex.stackexchange.com/questions/241343/what-is-the-meaning-of-fussy-sloppy-emergencystretch-tolerance-hbadness
-%% http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
-\tolerance 1414
-\hbadness 1414
-\emergencystretch 1em %поиграться стоит
-\hfuzz 0.3pt
-\vfuzz \hfuzz
-%\raggedbottom
-%\sloppy                             % Избавляемся от переполнений
-\clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty=10000                 % Запрещаем разрыв страницы после
-                                % последней строки абзаца
-
 % %%% Выравнивание и переносы %%%
-% \sloppy                             % Избавляемся от переполнений
+% %% http://tex.stackexchange.com/questions/241343/what-is-the-meaning-of-fussy-sloppy-emergencystretch-tolerance-hbadness
+% %% http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
+% \tolerance 1414
+% \hbadness 1414
+% \emergencystretch 1em %поиграться стоит
+% \hfuzz 0.3pt
+% \vfuzz \hfuzz
+% %\raggedbottom
+% %\sloppy                             % Избавляемся от переполнений
 % \clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
-% \widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
-% \righthyphenmin=2 %Разрешаем перенос двух букв
-% \tolerance=500 \hyphenpenalty=100 \doublehyphendemerits=50000
-% \finalhyphendemerits=10000 \brokenpenalty=10000 
+% \widowpenalty=10000                 % Запрещаем разрыв страницы после
+%                                 % последней строки абзаца
+
+% % %%% Выравнивание и переносы %%%
+% % \sloppy                             % Избавляемся от переполнений
+% % \clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
+% % \widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
+% % \righthyphenmin=2 %Разрешаем перенос двух букв
+% % \tolerance=500 \hyphenpenalty=100 \doublehyphendemerits=50000
+% % \finalhyphendemerits=10000 \brokenpenalty=10000 
 
 %%% Подписи %%%
 \captionsetup{%
@@ -51,36 +81,36 @@ justification=centering,            % Центрирование подписе�
 \captionsetup[figure]{labelsep=emdash,position=bottom}
 
 %%% Таблицы %%%
-\ifthenelse{\equal{\thetabcap}{0}}{%
+\ifthenelse{\thetabcap = 0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetablaba}{0} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 0 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetablaba}{1} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 1 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\centering}    % по центру страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetablaba}{2} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 2 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\raggedleft}   % по правому краю страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetabtita}{0} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 0 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetabtita}{1} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 1 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\centering}    % по центру страницы или аналога parbox
-}
+}{}
 
-\ifthenelse{\equal{\thetabtita}{2} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 2 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\raggedleft}   % по правому краю страницы или аналога parbox
-}
+}{}
 
 \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}        % Наименование таблицы отсутствует
-\ifthenelse{\equal{\thetabcap}{0}}{%
+\ifthenelse{\thetabcap = 0}{%
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2#3}
     \captionsetup[table]{labelsep=emdash}                       % тире как разделитель идентификатора с номером от наименования
 }{%
@@ -125,11 +155,11 @@ justification=centering,            % Центрирование подписе�
     pdfkeywords={\keywords},    % Ключевые слова
     pdflang={ru},
 }
-\ifthenelse{\equal{\thedraft}{1}}{% Черновик
+\ifthenelse{\thedraft = 1}{% Черновик
     \hypersetup{
         draft,
     }
-}
+}{}
 
 %%% Шаблон %%%
 \DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase

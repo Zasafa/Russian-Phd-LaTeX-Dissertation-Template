@@ -254,7 +254,7 @@ def fieldplot(fig, ax, WL, comment='', WL_units=' ', crossplane='XZ',
         #         horizontalalignment='right',
         #         verticalalignment='bottom',
         #         transform=ax.transAxes)
-        cax = ax.imshow(Eabs_data, interpolation='nearest', cmap=cm.rainbow,
+        cax = ax.imshow(Eabs_data, interpolation='none', cmap=cm.rainbow,
                         origin='lower', vmin=min_tick, vmax=max_tick, extent=(min(scale_x), max(scale_x), min(scale_z), max(scale_z))
                         # ,norm = LogNorm()
                         )
@@ -290,15 +290,15 @@ def fieldplot(fig, ax, WL, comment='', WL_units=' ', crossplane='XZ',
         elif crossplane == 'XY':
             ax.set_xlabel('Y, ' + WL_units, labelpad=lp1)
             ax.set_ylabel('X, ' + WL_units, labelpad=lp2)
-#         # # This part draws the nanoshell
-#         from matplotlib import patches
-#         from matplotlib.path import Path
-#         for xx in [x[0],x[-1]]:
-#         #for xx in x:
-#             r = xx * WL / 2.0 / np.pi
-#             s1 = patches.Arc((0, 0), 2.0 * r, 2.0 * r,  angle=0.0, zorder=1.8,
-#                              theta1=0.0, theta2=360.0, linewidth=outline_width, color='black')
-#             ax.add_patch(s1)
+        # # This part draws the nanoshell
+        from matplotlib import patches
+        from matplotlib.path import Path
+        for xx in [1.5/2.0, 1.5/2.0+0.8/3.75]:
+        #for xx in x:
+            r = xx 
+            s1 = patches.Arc((0, 0), 2.0 * r, 2.0 * r,  angle=0.0, zorder=1.8,
+                             theta1=0.0, theta2=360.0, linewidth=outline_width, color='black')
+            ax.add_patch(s1)
 #         #
 #         # for flow in range(0,flow_total):
 #         #     flow_x, flow_z = GetFlow(scale_x, scale_z, Ec, Hc,

@@ -2,7 +2,7 @@
 
 %\usepackage{csquotes} % biblatex рекомендует его подключать. Пакет для оформления сложных блоков цитирования.
 %%% Загрузка пакета с основными настройками %%%
-\ifthenelse{\equal{\thedraft}{0}}{% Чистовик
+\ifthenelse{\thedraft = 0}{% Чистовик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
@@ -259,8 +259,8 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 \defbibheading{countauthor}{}
 
-
-
+\defbibheading{authorpublications}[\authorbibtitle]{\section*{#1}}
+\defbibheading{otherpublications}{\section*{#1}}
 
 
 %%% Создание команд для вывода списка литературы %%%
@@ -270,12 +270,12 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[keyword=biblioauthor,section=1,title=\authorbibtitle]
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
 \printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
 }
 
 \newcommand*{\insertbiblioother}{
-\printbibliography[keyword=biblioother]
+\printbibliography[heading=otherpublications,keyword=biblioother]
 \printbibliography[heading=counter,env=counter,keyword=biblioother]
 }
 
