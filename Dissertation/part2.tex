@@ -576,36 +576,43 @@ k(-x_i-a)^m,\quad &x_i <-a
 \begingroup % Ограничиваем область видимости arraystretch
 %% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
 \newcounter{rowcnt}
-\newcommand\altshape{\ifnumodd{\value{rowcnt}}{\color{red}}{\vspace*{-1ex}\itshape}}
+\newcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
+}{
+  \ifnumodd{\value{rowcnt}}{}{\vspace*{-0.8ex}}}
+}
 \newcolumntype{A}{ >{\altshape}X[1mc]}
 \AtBeginEnvironment{tabular}{\setcounter{rowcnt}{1}}
 \AtEndEnvironment{tabular}{\setcounter{rowcnt}{0}}
 
 \needspace{2\baselineskip}
-%\renewcommand{\arraystretch}{1.6}%% Увеличение расстояния между рядами, для улучшения восприятия.
+\renewcommand{\arraystretch}{0.9}%% Увеличение расстояния между рядами, для улучшения восприятия.
 \begin{longtabu} to \textwidth {@{}X[0.2ml]X[0.9mc]AAAA>{\setlength{\baselineskip}{0.7\baselineskip}}AA<{\stepcounter{rowcnt}}@{}}
 % \begin{longtabu} to \textwidth {@{}X[0.2ml]X[1mc]X[1mc]X[1mc]X[1mc]X[1mc]>{\setlength{\baselineskip}{0.7\baselineskip}}X[1mc]X[1mc]@{}}
   \caption{Сравнение различных алгоритмов оптимизации. Указанны
     среднее значение и среднеквадратичное отклонение результата
     оптимизации после фиксированного числа итераций для 50 запусков
-    каждого алгоритма. Для каждой функции бралось 30 независимых
-    переменных.\label{tbl:opt-results-book-30d}}\vspace*{1ex}\\% label всегда желательно идти после caption
+    каждого алгоритма. Для каждой функции бралось число независимых
+    переменных $D=30$.\label{tbl:opt-results-book-30d}}\vspace*{1ex}\\% label всегда желательно идти после caption
   % \vspace*{1ex}     \\
 
   \toprule %%% верхняя линейка  
- &Итерации & \vspace*{0.5ex}\textup{JADE\texttt{++}} & \vspace*{0.5ex}\textup{JADE} & \vspace*{0.5ex}\textup{jDE} & \vspace*{0.5ex}\textup{SaDE} & \vspace*{0.5em} \textup{DE/rand /1/bin} \vspace*{0.1em} & \vspace*{0.5ex}\textup{PSO} \\ 
+\setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
+& DE/rand /1/bin & PSO \\ 
+
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endfirsthead
 
  \multicolumn{8}{c}{\small\slshape (продолжение)} \\ 
  \toprule %%% верхняя линейка
- &\vspace*{-0.5ex}Итерации & \textup{JADE\texttt{++}} & \textup{JADE} & \textup{jDE} & \textup{SaDE} & \vspace*{0.5em} \textup{DE/rand /1/bin} \vspace*{0.2em} & \textup{PSO} \\ 
+\setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
+& DE/rand /1/bin & PSO \\ 
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endhead
  
  \multicolumn{8}{c}{\small\slshape (окончание)} \\ 
  \toprule %%% верхняя линейка
- &\vspace*{-0.5ex}Итерации & \textup{JADE\texttt{++}} & \textup{JADE} & \textup{jDE} & \textup{SaDE} & \vspace*{0.5em} \textup{DE/rand /1/bin} \vspace*{0.2em} & \textup{PSO} \\ 
+\setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
+& DE/rand /1/bin & PSO \\ 
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endlasthead
 
