@@ -500,20 +500,10 @@ MT19937~\cite{Matsumoto-RNG-MT-1998}, использующий вихрь Мер
 большинства итеративных методов, в том числе и метода градиентного
 спуска. Он в такой ситуации демонстрирует движение мелким
 зигзагом. Типичным представителем этого семейства функций является
-функция Розенброка~\cite{Rosenbrock-1960}.
+функция Розенброка~\cite{Rosenbrock-1960}
+(см. $f_5$ в таблице~\ref{tbl:test-functions}).
 
-Так как заранее предугадать тип функции, который попадётся
-оптимизатору при решении физической задачи не представляется
-возможным, то для проверки его работы был использован стандартный
-набор
-функций~\cite{Schwefel-1981,Rosenbrock-1960,Muhlenbein-1991,back-1996,Griewank-1981}
-(см. таблицу~\ref{tbl:test-functions}), часто используемый другими
-авторами для тестирования. Для каждой функции приводится её имя или
-краткое описание, диапазон параметров, внутри которого происходит
-поиск минимума, и выражение для вычисления. Всё функции могут
-использовать произвольное число независимых переменных --- размерность
-$D$.
-
+% TODO check longtable positions before final release.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%      Table Funсtions     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -593,6 +583,17 @@ k(x_i-a)^m,\quad &x_i >a\\[-0.5em]
 k(-x_i-a)^m,\quad &x_i <-a
 \end{cases}$  }   \\        \bottomrule %%% нижняя линейка 
 \end{longtabu} \endgroup
+Так как заранее предугадать тип функции, который попадётся
+оптимизатору при решении физической задачи не представляется
+возможным, то для проверки его работы был использован стандартный
+набор
+функций~\cite{Schwefel-1981,Rosenbrock-1960,Muhlenbein-1991,back-1996,Griewank-1981}
+(см. таблицу~\ref{tbl:test-functions}), часто используемый другими
+авторами для тестирования. Для каждой функции приводится её имя или
+краткое описание, диапазон параметров, внутри которого происходит
+поиск минимума, и выражение для вычисления. Всё функции могут
+использовать произвольное число независимых переменных --- размерность
+$D$.
 
 
 превосходство JADE или результат сопоставимый с лучшими из числа
@@ -608,8 +609,6 @@ JADE MT19
 
 f11	gen500	2.0e-14 (1.3e-14) runs(40) at (-600,600)   100D MT wo PMCRADE
 f11	gen500	1.5e-04 (1.0e-03) runs(50) at (-600,600) 100D MT wo PMCRADE
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -639,28 +638,23 @@ f11	gen500	1.5e-04 (1.0e-03) runs(50) at (-600,600) 100D MT wo PMCRADE
     каждого алгоритма. Для каждой функции бралось число независимых
     переменных $D=30$.\label{tbl:opt-results-book-30d}}\vspace*{1ex}\\% label всегда желательно идти после caption
   % \vspace*{1ex}     \\
-
   \toprule %%% верхняя линейка  
 \setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
 & DE/rand /1/bin & PSO \\ 
-
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endfirsthead
-
  \multicolumn{8}{c}{\small\slshape (продолжение)} \\ 
  \toprule %%% верхняя линейка
 \setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
 & DE/rand /1/bin & PSO \\ 
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endhead
- 
  \multicolumn{8}{c}{\small\slshape (окончание)} \\ 
  \toprule %%% верхняя линейка
 \setcounter{rowcnt}{0} &Итерации & JADE\texttt{++} & JADE & jDE & SaDE
 & DE/rand /1/bin & PSO \\ 
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
  \endlasthead
-
  \bottomrule %%% нижняя линейка
  \multicolumn{8}{r}{\small\slshape продолжение следует}     \\ 
  \endfoot 
@@ -707,6 +701,23 @@ f13 & 500  & \z1.2E-15  & \z1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E
 % \end{cases}$  }     \\
 \bottomrule %%% нижняя линейка 
 \end{longtabu} \endgroup
+
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
+sdf ;alsdkf ;asldkf a;slkfd a;lsd f;alskdjf ;alskdf ;als kf;aslkd
+f;alsk f;als fd
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
