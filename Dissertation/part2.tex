@@ -634,9 +634,9 @@ k(-x_i-a)^m,\quad &x_i <-a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begingroup % Ограничиваем область видимости arraystretch
 %% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
-\newcounter{rowcnt}
+%\newcounter{rowcnt}
 \newcommand\z{\bfseries}
-\newcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
+\renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
 }{
   \ifnumodd{\value{rowcnt}}{}{\vspace*{-0.8ex}}}
 }
@@ -728,7 +728,7 @@ $f_{13}$ & 500  & \z1.2E-15  & \z1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   &
 %% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
 % \newcounter{rowcnt}
 \newcommand\z{\bfseries}
-\newcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
+\renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
 }{
   \ifnumodd{\value{rowcnt}}{}{\vspace*{-0.8ex}}}
 }
@@ -836,9 +836,9 @@ $N_{\rmfamily ind} = 400$. Как уже отмечалось в
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begingroup % Ограничиваем область видимости arraystretch
 %% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
-%\newcounter{rowcnt}
+% \newcounter{rowcnt}
 \newcommand\z{\bfseries}
-\newcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
+\renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
 }{
   \ifnumodd{\value{rowcnt}}{}{\vspace*{-0.8ex}}}
 }
@@ -935,7 +935,7 @@ $f_{13}$ & 500  & 1.2E-15   & 1.2E-15   & 2.1e-15   & 1.1e-21  &\z 7.9e-22   \\\
 %% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
 % \newcounter{rowcnt}
 \newcommand\z{\bfseries}
-\newcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
+\renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
 }{
   \ifnumodd{\value{rowcnt}}{}{\vspace*{-0.8ex}}}
 }
