@@ -264,29 +264,38 @@ ${W = 0.005\lambda}$ до ${W = 0.235\lambda}$ с шагом $0.005\lambda$ с
 двухдолинному~(Рис.~\ref{fig:CST-index-design}) дизайну, где оба
 дизайна сосуществуют при одной и той же толщине.
 
-\begin{figure}
+\begin{figure}[p]
   \begin{minipage}[h]{0.45\textwidth}
-    % W=0.62~cm $\Delta$TSCS=-47.9\% \\
-    \includegraphics[width=0.99\textwidth]{w062-s-diff-479}
+    \centering{\includegraphics[width=0.99\textwidth]{w062-s-diff-479}\\а)}
   \end{minipage}
-  \hfill
   \begin{minipage}[h]{0.45\textwidth}
-    % W=0.62~cm $\Delta$TSCS=-32.3\%\\
-    \includegraphics[width=0.99\textwidth]{w062-t-diff-323}
+    \centering{\includegraphics[width=0.99\textwidth]{w062-t-diff-323}\\б)}
   \end{minipage}\\
   \vspace{12pt}\\
-  % \vfill
   \begin{minipage}[h]{0.45\textwidth}
-    % W=0.76~cm $\Delta$TSCS=-46.9\%\\
-    \includegraphics[width=0.99\textwidth]{w076-s-diff-469}
+    \centering{\includegraphics[width=0.99\textwidth]{w066-s-diff-479}\\в)}
   \end{minipage}
-  \hfill
   \begin{minipage}[h]{0.45\textwidth}
-    % W=0.76~cm $\Delta$TSCS=-41.9\%\\
-    \includegraphics[width=0.99\textwidth]{w076-t-diff-419}
+    \centering{\includegraphics[width=0.99\textwidth]{w066-t-diff-431}\\г)}
+  \end{minipage}\\
+  \vspace{12pt}\\
+  % \begin{minipage}[h]{0.45\textwidth}
+  %   \includegraphics[width=0.99\textwidth]{w068-s-diff-482}
+  % \end{minipage}
+  % \begin{minipage}[h]{0.45\textwidth}
+  %   \includegraphics[width=0.99\textwidth]{w068-t-diff-527}
+  % \end{minipage}\\
+  % \vspace{12pt}\\
+  \begin{minipage}[h]{0.45\textwidth}
+    \centering{\includegraphics[width=0.99\textwidth]{w076-s-diff-469}\\д)}
+  \end{minipage}
+  \begin{minipage}[h]{0.45\textwidth}
+    \centering{\includegraphics[width=0.99\textwidth]{w076-t-diff-419}\\е)}
   \end{minipage}%
-  \caption{Переход от однодолинного к двухдолинному дизайну. Каждый
-    профиль показателя преломления был получен в отдельном проходе оптимизации.
+  \caption{Переход от однодолинного к двухдолинному дизайну. Каждой
+    паре (а-б), (в-г) и (д-е) соответсвует одинаковая толщина
+    покрытия. Каждый профиль показателя преломления был получен
+    независимо, в отдельном проходе оптимизации.
     \label{fig:transition}}%
 \end{figure}
 Для толщины покрытия более ${\approx 0.68}$~см большинство дизайнов
@@ -315,7 +324,7 @@ ${W = 0.005\lambda}$ до ${W = 0.235\lambda}$ с шагом $0.005\lambda$ с
 для толщины покрытия 2.4~см, для которой оптимизатор смог найти некий
 дизайн~(Рис.~\ref{fig:thick}) с 54.3\% падением TSCS.
 \begin{figure}
-  \includegraphics[width=0.47\textwidth]{w24-chaotic-index}%
+  \centering{\includegraphics[width=0.87\textwidth]{w24-chaotic-index}}%
   \caption{Хаотический дизайн для толщины покрытия $W=2.4$~cm
     $\Delta =-54.3$\% после 10~000 поколений.
     \label{fig:thick}}%
