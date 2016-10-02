@@ -123,9 +123,9 @@ if __name__ == '__main__':
 
             flow_total = 0
             #crossplane='XZ'
-            crossplane='XYZ'
+            #crossplane='XYZ'
             #crossplane='YZ'
-            #crossplane='XY'
+            crossplane='XY'
 
             # Options to plot: Eabs, Habs, Pabs, angleEx, angleHy
             #field_to_plot='Pabs'
