@@ -140,7 +140,10 @@ def GetField(crossplane, npts, factor, x, m, pl):
     x: size parameters for particle layers
     m: relative index values for particle layers
     """
-    scan = np.linspace(-factor*x[-1], factor*x[-1], npts)
+    scan = np.linspace(-factor
+                       *x[-1],
+                       factor*x[-1],
+                       npts)
     zero = np.zeros(npts*npts, dtype = np.float64)
 
     if crossplane=='XZ':
@@ -289,8 +292,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             ax.set_xlabel('Z, ' + WL_units, labelpad=lp1)
             ax.set_ylabel('Y, ' + WL_units, labelpad=lp2)
         elif crossplane=='XYZ':
-            ax.set_xlabel(r'$Z,\lambda$'+WL_units, fontsize = 25)
-            ax.set_ylabel(r'$Y:X,\lambda$'+WL_units, fontsize = 25, labelpad=lp2)
+            ax.set_xlabel(r'$Z,$'+WL_units, fontsize = 25)
+            ax.set_ylabel(r'$Y:X,$'+WL_units, fontsize = 25, labelpad=lp2)
             ax.axhline(y=0.0, ls='--', dashes=[7,5], color='gray', lw=outline_width)
             bbox_props = dict(boxstyle="round,pad=0.3", fc="white", ec="white", lw=2)
             ax.annotate('E-k', xy=(0.95, 0.95), xycoords='axes fraction', fontsize=21,
