@@ -39,7 +39,7 @@ def SetXM(design, extra_width = 0, WL=0, epsilon_Si=0, epsilon_Ag=0):
         epsilon_Si = 18.4631066585 + 0.6259727805j
         epsilon_Ag = -8.5014154589 + 0.7585845411j
 
-    index_Si = np.sqrt(epsilon_Si)
+    index_Si = np.sqrt(epsilon_Si+1.50j)
     index_Ag = np.sqrt(epsilon_Ag)
     isSiAgSi=True
     isBulk = False
@@ -86,7 +86,18 @@ def SetXM(design, extra_width = 0, WL=0, epsilon_Si=0, epsilon_Ag=0):
         # m = np.ones((2), dtype = np.complex128)
         # m[0] = index_Ag
         # m[1] = index_Ag
-        return x, m, WL
+        return x, m
+    elif design==6:  # Bashevoj
+        if WL == 0: WL=1052 #nm
+        core_r = 140.0
+        #core_r = 190.0
+        # core_r = 204.2
+
+        x = np.ones((1), dtype = np.float64)
+        x[0] = 2.0*np.pi*core_r/WL
+        m = np.ones((1), dtype = np.complex128)
+        m[0] = index_Si
+        return x, m
     outer_width = outer_width+extra_width
 
     core_r = core_width
@@ -119,9 +130,11 @@ def calc(design, extra_width, WL, epsilon_Si, epsilon_Ag):
     terms, Qext, Qsca, Qabs, Qbk, Qpr, g, Albedo, S1, S2 = scattnlay(
         np.array([x]), np.array([m]))
     terms2, an, bn = scattcoeffs(np.array([x]), np.array([m]), terms)
-    an_s = (an.real - np.abs(an)**2)[0]
-    bn_s = (bn.real - np.abs(bn)**2)[0]
-    return np.array([WL, an_s[0], bn_s[0], an_s[1], bn_s[1], an_s[2], bn_s[2] ])
+    an_s = (np.abs(an))[0]
+    bn_s = (np.abs(bn))[0]
+    # an_s = (an.real - np.abs(an)**2)[0]
+    # bn_s = (bn.real - np.abs(bn)**2)[0]
+    return np.array([WL, an_s[0], bn_s[0], an_s[1], bn_s[1], an_s[2], bn_s[2], Qsca ])
 ###############################################################################
 def GetEpsilon(WLs, fname):
     data = np.loadtxt(fname)
@@ -141,12 +154,15 @@ def GetEpsilon(WLs, fname):
 ###############################################################################
 def save_spectra(fname, from_WL, to_WL, total_points, design, extra_width):
     WLs = np.linspace(from_WL, to_WL, total_points)
-    epsSi = GetEpsilon(WLs, "Si-int.txt")
-    epsAg = GetEpsilon(WLs, "Ag-int.txt")    
-    # epsSi = GetEpsilon(WLs, "Si.txt")
-    # epsAg = GetEpsilon(WLs, "Ag.txt")    
-
-    data = calc(design, extra_width, WLs[0], epsSi[0,1], epsAg[0,1])
+    # epsSi = GetEpsilon(WLs, "Si-int.txt")
+    # epsAg = GetEpsilon(WLs, "Ag-int.txt")    
+    epsSi = GetEpsilon(WLs, "Si.txt")
+    epsAg = GetEpsilon(WLs, "Ag.txt")    
+    print(epsSi[0,1])
+    print(epsAg[0,1])
+    print(WLs[0])
+    data = calc(design, extra_width, WLs[0],
+                epsSi[0,1], epsAg[0,1])
     for i in range(len(WLs)):
         data = np.vstack((data,calc(design, extra_width, WLs[i], epsSi[i,1], epsAg[i,1])))
     # epsSi = 18.4631066585 + 0.6259727805j
@@ -182,21 +198,30 @@ def load_data(fname):
     return data, data_spaced
 ###############################################################################
 
-design = 1 #AgSi
+design = 5 #AgSi
 # epsilon_Si = 18.4631066585 + 0.6259727805j
 # epsilon_Ag = -8.5014154589 + 0.7585845411j
 # WL = 500
 from_WL = 400
 to_WL = 600
 
-# from_WL = 700
-# to_WL = 900
+from_WL = 1000
+to_WL = 1100
+
+from_WL = 800
+to_WL = 1200
+
+from_WL=1051
+to_WL=1053
+
 
 total_points = 600
 for i in range(1):
     extra_width = 0
-    fname = "Ag-Si-channels-TotalR036-calc.dat"
-    design = 1 #AgSi
+    fname = "Si-channels.dat"
+    design = 6 # Si
+    # fname = "Ag-Si-channels-TotalR036-calc.dat"
+    # design = 1 #AgSi
     #design = 4
     save_spectra(fname, from_WL, to_WL, total_points, design, extra_width)
     data, data_spaced = load_data(fname)
@@ -218,8 +243,8 @@ for i in range(1):
     data4, data_spaced4 = load_data(fname4)
 
 
-#    isAll = False
-    isAll = True
+    isAll = False
+#    isAll = True
     ############################# Plotting ######################
     import numpy.ma as ma
     vals = ma.array(data_spaced)
@@ -235,6 +260,7 @@ for i in range(1):
     SiAgSi3=3
     for ax in axs:
         ax.locator_params(axis='y',nbins=4)
+        ax.locator_params(axis='x',nbins=5)
         # for label in ['left', 'right', 'top', 'bottom']:
         #     ax.spines[label].set_position(('outward',-1.3))
         #ax.tick_params(axis='x', pad=30)
@@ -256,41 +282,41 @@ for i in range(1):
                          solid_joinstyle='round', solid_capstyle='round', color='blue'
                          , label=r"$\tilde{b}_2$"
     )
-    axs[AgSi].axhline(y=0.25, ls='--', dashes=[2,2], color='gray')
+    # axs[AgSi].axhline(y=0.25, ls='--', dashes=[2,2], color='gray')
     lg=axs[AgSi].legend(loc='center right',prop={'size':11})
     #lg=axs[SiAgSi].legend(loc='upper right',prop={'size':8})
     #lg.get_frame().set_linewidth(0.0)
-    axs[AgSi].annotate('0.25', xy=(530, 0.25), fontsize=9, color='gray',
-                    horizontalalignment='left', verticalalignment='bottom')
+    # axs[AgSi].annotate('0.25', xy=(530, 0.25), fontsize=9, color='gray',
+    #                 horizontalalignment='left', verticalalignment='bottom')
 
     lg.draw_frame(False)
 
     plotwidth=2.0
-    cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,1], linewidth=plotwidth,
+    cax = axs[SiAgSi].plot(data[:,0], data[:,-1], linewidth=plotwidth,
                          solid_joinstyle='round', solid_capstyle='round', color='black'
-                         , label=r"$\tilde{a}_1$"
+                           , label=r"$Q_{sca}_1$"
     )
 
-    cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,2], linewidth=plotwidth/1.5,
-                         solid_joinstyle='round', solid_capstyle='round', color='red'
-                         , label=r"$\tilde{b}_1$"
-    )
-    cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,3], linewidth=plotwidth,
-                         solid_joinstyle='round', solid_capstyle='round', color='green'
-                         , label=r"$\tilde{a}_2$"
-    )
-    cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,4], linewidth=plotwidth/1.5,
-                         solid_joinstyle='round', solid_capstyle='round', color='blue'
-                         , label=r"$\tilde{b}_2$"
-    )
-    axs[SiAgSi].axhline(y=0.25, ls='--', dashes=[2,2], color='gray')
-    lg=axs[SiAgSi].legend(loc='center right',prop={'size':11})
+    # cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,2], linewidth=plotwidth/1.5,
+    #                      solid_joinstyle='round', solid_capstyle='round', color='red'
+    #                      , label=r"$\tilde{b}_1$"
+    # )
+    # cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,3], linewidth=plotwidth,
+    #                      solid_joinstyle='round', solid_capstyle='round', color='green'
+    #                      , label=r"$\tilde{a}_2$"
+    # )
+    # cax = axs[SiAgSi].plot(data_spaced2[:,0], data_spaced2[:,4], linewidth=plotwidth/1.5,
+    #                      solid_joinstyle='round', solid_capstyle='round', color='blue'
+    #                      , label=r"$\tilde{b}_2$"
+    # )
+    # axs[SiAgSi].axhline(y=0.25, ls='--', dashes=[2,2], color='gray')
+    #lg=axs[SiAgSi].legend(loc='center right',prop={'size':11})
     #lg=axs[SiSiAgSi].legend(loc='upper right',prop={'size':8})
     #lg.get_frame().set_linewidth(0.0)
-    axs[SiAgSi].annotate('0.25', xy=(530, 0.25), fontsize=9, color='gray',
-                    horizontalalignment='left', verticalalignment='bottom')
+    # axs[SiAgSi].annotate('0.25', xy=(530, 0.25), fontsize=9, color='gray',
+    #                 horizontalalignment='left', verticalalignment='bottom')
 
-    lg.draw_frame(False)
+    #lg.draw_frame(False)
 
     if isAll:
         plotwidth=2.0
@@ -343,18 +369,18 @@ for i in range(1):
         # lg.draw_frame(False)
 
 
-    y_up_lim = 0.29
+    y_up_lim = 1.029
     axs[AgSi].set_ylabel(r'$\tilde{a}_n ,\ \tilde{b}_n$', labelpad=4.1)
     axs[AgSi].set_ylim(0, y_up_lim)
 
-    axs[SiAgSi].set_ylabel(r'$\tilde{a}_n ,\ \tilde{b}_n$', labelpad=4.1)
-    axs[SiAgSi].set_ylim(0, y_up_lim)
+    axs[SiAgSi].set_ylabel(r'$Q_{sca}$', labelpad=4.1)
+    # axs[SiAgSi].set_ylim(0, y_up_lim)
 
-    axs[SiAgSi2].set_ylabel(r'$\tilde{a}_n ,\ \tilde{b}_n$', labelpad=4.1)
-    axs[SiAgSi2].set_ylim(0, y_up_lim)
+    # axs[SiAgSi2].set_ylabel(r'$\tilde{a}_n ,\ \tilde{b}_n$', labelpad=4.1)
+    # axs[SiAgSi2].set_ylim(0, y_up_lim)
 
     # axs[SiAgSi3].set_ylabel(r'$\left|a_{ln}\right|^2+\left|d_{ln}\right|^2$', labelpad=+3)
-    axs[SiAgSi2].set_xlabel('Длина волны, нм', labelpad=2)
+    axs[SiAgSi].set_xlabel(r'$\lambda$, nm', labelpad=2)
     # axs[SiAgSi3].set_ylim(0.8, 8000)
 
     plt.xlim(from_WL,  to_WL)
@@ -362,10 +388,10 @@ for i in range(1):
     # axs[AgSi].annotate(r'$\Delta=%i$'%extra_width, xy=(0.09, 0.985), xycoords='axes fraction', fontsize=10,
     #                 horizontalalignment='left', verticalalignment='top')
 
-    axs[AgSi].annotate('(г)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
-                    horizontalalignment='right', verticalalignment='top')
-    axs[SiAgSi].annotate('(д)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
-                    horizontalalignment='right', verticalalignment='top')
+    # axs[AgSi].annotate('(г)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
+    #                 horizontalalignment='right', verticalalignment='top')
+    # axs[SiAgSi].annotate('(д)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
+    #                 horizontalalignment='right', verticalalignment='top')
     if isAll:
         axs[SiAgSi2].annotate('(е)', xy=(0.985, 0.98), xycoords='axes fraction', fontsize=10,
                     horizontalalignment='right', verticalalignment='top')
@@ -380,10 +406,11 @@ for i in range(1):
         # fmt.set_scientific(True)
         # axs[SiAgSi3].get_yaxis().set_major_formatter(fmt)
 
-    fig.subplots_adjust(hspace=.05)
+    fig.subplots_adjust(hspace=.15)
     plt.minorticks_off()
     fname="2015-04-01-SiAgSi-ab-spectra4"
     plt.savefig(fname+".pdf",pad_inches=0.02, bbox_inches='tight')
+    #plt.savefig(fname+".pdf",pad_inches=0.2)
     #plt.draw()
 
     #plt.show()

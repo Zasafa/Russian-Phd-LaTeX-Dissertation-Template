@@ -216,7 +216,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             label = r'$\operatorname{Re}(E \times H)$'
         elif field_to_plot == 'Eabs':
             Eabs = np.sqrt(Er[:, 0]**2 + Er[:, 1]**2 + Er[:, 2]**2)
-            Eabs_data = np.resize(Eabs, (npts, npts)).T[int(npts/crop):-int(npts/crop),:]
+            # Eabs_data = np.resize(Eabs, (npts, npts)).T[int(npts/crop):-int(npts/crop),:]
+            Eabs_data = np.resize(Eabs, (npts, npts)).T
             label = r'$|E|$'
         elif field_to_plot == 'Habs':
             Habs = np.sqrt(Hr[:, 0]**2 + Hr[:, 1]**2 + Hr[:, 2]**2)
@@ -241,7 +242,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         WL = 1
         WL_units = r'$\lambda$'
         # Rescale to better show the axes
-        crop_z = (max(coordZ)-min(coordZ))/crop
+        # crop_z = (max(coordZ)-min(coordZ))/crop
+        crop_z = 0.0
         scale_x = np.linspace(
              min(coordX) * WL / 2.0 / np.pi, max(coordX) * WL / 2.0 / np.pi, npts)
         scale_z = np.linspace(
@@ -300,7 +302,6 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
                         horizontalalignment='right', verticalalignment='top',bbox = bbox_props)
             ax.annotate('H-k', xy=(0.95, 0.05), xycoords='axes fraction', fontsize=21,
                         horizontalalignment='right', verticalalignment='bottom',bbox = bbox_props)
-
         elif crossplane == 'XY':
             ax.set_xlabel('Y, ' + WL_units, labelpad=lp1)
             ax.set_ylabel('X, ' + WL_units, labelpad=lp2)
@@ -315,7 +316,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             ax.add_patch(s1)
         #
         # for flow in range(0,flow_total):
-        #     flow_x, flow_z = GetFlow(scale_x, scale_z, Ec, Hc,
+        #     flow_x, flow_z = GetFlow3D(scale_x, scale_z, Ec, Hc,
         #                              min(scale_x)+flow*(scale_x[-1]-scale_x[0])/(flow_total-1),
         #                              min(scale_z),
         #                              #0.0,
@@ -334,8 +335,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             min_SP = -factor * x[-1]
             step_SP = 2.0 * factor * x[-1] / (flow_total - 1)
             x0, y0, z0 = 0, 0, 0
-            max_length = factor * x[-1] * 10
-            # max_length=factor*x[-1]*5
+            #ax_length = factor * x[-1] * 10
+            max_length=factor*x[-1]*5
             max_angle = np.pi / 160
             if is_flow_extend:
                 rg = range(0, flow_total * 5 + 1)
