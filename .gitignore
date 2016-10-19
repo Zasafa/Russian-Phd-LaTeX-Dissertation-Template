@@ -1,3 +1,15 @@
+lumerical
+*.pyc
+2013-FDTD-Fortran-vs-C
+2014-dielectric-cloak
+2015-cloak-in-glass
+*.zip
+*.xwm
+python-scattnlay-dev
+preprints
+bhfield-121005
+jade
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
