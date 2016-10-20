@@ -220,7 +220,8 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
             Eabs_data = np.resize(Eabs, (npts, npts)).T
             label = r'$|E|$'
         elif field_to_plot == 'Habs':
-            Habs = np.sqrt(Hr[:, 0]**2 + Hr[:, 1]**2 + Hr[:, 2]**2)
+            free_space_impedance = 376.73
+            Habs = np.sqrt(Hr[:, 0]**2 + Hr[:, 1]**2 + Hr[:, 2]**2)*free_space_impedance
             Eabs_data = np.resize(Habs, (npts, npts)).T
             label = r'$|H|$'
         elif field_to_plot == 'angleEx':
@@ -254,8 +255,9 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         # Define scale ticks
         min_tick = np.amin(Eabs_data[~np.isnan(Eabs_data)])
         max_tick = np.amax(Eabs_data[~np.isnan(Eabs_data)])
-        min_tick = 0.0
-        max_tick = 2.59
+        # min_tick = 0.0
+        # max_tick = 2.59
+        # ax_tick = 12.0
         scale_ticks = np.linspace(min_tick, max_tick, 10)
         #scale_ticks = np.power(10.0, np.linspace(np.log10(min_tick), np.log10(max_tick), 6))
         #scale_ticks = [0.1,0.3,1,3,10, max_tick]
@@ -270,7 +272,9 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         #         horizontalalignment='right',
         #         verticalalignment='bottom',
         #         transform=ax.transAxes)
-        cax = ax.imshow(Eabs_data, interpolation='nearest', cmap=cm.rainbow,
+        cax = ax.imshow(Eabs_data, interpolation='nearest',
+                            cmap=cm.rainbow,
+                            #cmap=cm.jet,
                         origin='lower', vmin=min_tick, vmax=max_tick, extent=(min(scale_x), max(scale_x), min(scale_z), max(scale_z))
                         # ,norm = LogNorm()
                         )

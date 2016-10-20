@@ -129,7 +129,8 @@ if __name__ == '__main__':
 
             # Options to plot: Eabs, Habs, Pabs, angleEx, angleHy
             #field_to_plot='Pabs'
-            field_to_plot='Habs'
+            #field_to_plot='Habs'
+            field_to_plot='Eabs'
             
             #field_to_plot='angleEx'
             #field_to_plot='angleHy'
