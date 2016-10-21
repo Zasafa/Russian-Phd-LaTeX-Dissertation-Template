@@ -257,7 +257,7 @@ def fieldplot(fig, ax, x, m, WL, comment='', WL_units=' ', crossplane='XZ',
         max_tick = np.amax(Eabs_data[~np.isnan(Eabs_data)])
         # min_tick = 0.0
         # max_tick = 2.59
-        # ax_tick = 12.0
+        max_tick = 180.0
         scale_ticks = np.linspace(min_tick, max_tick, 10)
         #scale_ticks = np.power(10.0, np.linspace(np.log10(min_tick), np.log10(max_tick), 6))
         #scale_ticks = [0.1,0.3,1,3,10, max_tick]
