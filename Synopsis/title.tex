@@ -1,11 +1,16 @@
 \thispagestyle{empty}
-
+\doublehyphendemerits=500000
 \vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
   \includegraphics[height=1.5cm]{itmo-logo}
   \hfill
-  \large{На правах рукописи}
-  %\includegraphics[height=1.5cm]{personal-signature} 
+  \begin{minipage}{.34\linewidth}
+    \begin{center}
+      \large{На правах рукописи}    \\
+      \vspace{1em}
+    \includegraphics[height=1.3cm]{personal-signature}      
+    \end{center}
+  \end{minipage}
 \end{center}
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
@@ -34,6 +39,7 @@
 \newpage
 % оборотная сторона обложки
 \thispagestyle{empty}
+{\doublehyphendemerits=1000000000
 \noindent Работа выполнена в \thesisInOrganization
 
 \par\bigskip
@@ -59,32 +65,33 @@
 
 \noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~при \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
 
-\vspace{0.017\paperheight}
+\vspace{0.015\paperheight}
 \noindent С диссертацией можно ознакомиться в библиотеке
 \synopsisLibrary. % TODO вставить ссылку на дисер на сайте ИТМО
+}
 
 % \vspace{0.017\paperheight}
 % \noindent Отзывы на автореферат в двух экземплярах, заверенные печатью учреждения, просьба направлять по адресу: \defenseCouncilAddress, ученому секретарю диссертационного совета~\defenseCouncilNumber.
 
-\vspace{0.017\paperheight}
+\vspace{0.015\paperheight}
 \noindent{Автореферат разослан \synopsisDate.}
 
 %\noindent Телефон для справок: \defenseCouncilPhone.
 
-\vspace{0.017\paperheight}
+\vspace{0.015\paperheight}
 \par\bigskip
 \noindent%
 \begin{tabularx}{\textwidth}{@{}%
 >{\raggedright\arraybackslash}b{18em}
 >{\centering\arraybackslash}X
-r
+b{6em}
 @{}}
     Ученый секретарь\par
     диссертационного совета\par
     \defenseCouncilNumber,\par
     \defenseSecretaryRegalia
     &
-    %\includegraphics[width=2cm]{secretary-signature}
+    \includegraphics[width=2.3cm]{secretary-signature}
     &
     \defenseSecretaryFio
 \end{tabularx} 
